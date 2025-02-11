@@ -1,4 +1,4 @@
-import ProductsItems from "../../Components/Products-items";
+import ProductsItems from "./Products-items";
 import Category from "../../Components/Category";
 import { HashLoader } from "react-spinners";
 import { useEffect, useState } from "react"
@@ -50,7 +50,7 @@ function Products() {
     }
   }, [])
 
-  console.log("products:",products);
+  // console.log("products:",products);
 
   const handleQuantity = (operator, index) => {
 
