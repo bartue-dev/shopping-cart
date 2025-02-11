@@ -7,8 +7,6 @@ function Products() {
   const [data, setData] = useState(null);
   const [products, setProducts] = useState(null)
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
 
   useEffect(() => {
 
@@ -32,14 +30,12 @@ function Products() {
 
         setData(newData);
         setProducts(newData);
-        setError(null)
         setLoading(false)
       } catch (error) {
         if (error.name === "AbortError") {
           console.log("Abort");
           return;
         }
-        setError(error.name);
         setData(null)
         console.log(error)
       }/*  finally {
@@ -77,10 +73,7 @@ function Products() {
 
   return (
     <div>
-      {error && (
-        <div>{error}</div>
-      )}
-
+      
       {loading && (
         <div className="mt-(--custom-margin) flex justify-center items-center">
           <HashLoader
