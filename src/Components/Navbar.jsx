@@ -1,7 +1,10 @@
 import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({cartItems}) {
+
+  console.log("cart items from navbar:", cartItems.length);
+  
   return (
     <nav className="flex justify-between py-4 px-20 font-poppins items-center bg-neutral-50 text-stone-700">
 
@@ -13,8 +16,13 @@ function Navbar() {
         <Link to="about">About</Link>
       </div>
 
-      <div>
+      <div className="relative">
         <ShoppingCart size={30}/>
+        <h1 
+          className="absolute -top-3 right-0 font-semibold"
+        >
+          {cartItems.length}
+      </h1>
       </div>
 
     </nav>
