@@ -1,13 +1,28 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
+import { CircleChevronLeft } from "lucide-react";
 import BackgroundImage from "../utils/Background-image";
+import NoData from "./NoData";
 
 function ProductDetails() {
   const [productDetails] = useOutletContext()
 
+  console.log("Product details:",productDetails);
+  
+
   return (
-    <div className="flex items-center justify-center font-poppins">
+    <div className="flex items-center justify-center font-poppins border-1 h-[86vh]">
       <BackgroundImage />
 
+      {productDetails ? (
+        <>
+        <Link to="/products">
+          <CircleChevronLeft 
+            className="absolute left-20 top-30 cursor-pointer z-2" 
+            size={50} 
+          />
+        </Link>
+
+      
       <div className="flex items-center justify-center gap-10 p-5 w-250 z-1">
 
         <div className=" w-200 h-120">
@@ -16,7 +31,7 @@ function ProductDetails() {
 
         <div className="w-250 flex items-start justify-center flex-col gap-10">
           <div>
-            <h1 className="text-3xl">{productDetails.title.toUpperCase()}</h1>
+            <h1 className="text-3xl">{productDetails.title}</h1>
             <h1 className="mt-5 underline text-lg">Description:</h1>
             <h1 className="text-base/5 text-justify">{productDetails.description}</h1>
           </div>
@@ -48,6 +63,12 @@ function ProductDetails() {
           </div>
         </div>
       </div>
+        </>
+      ) : (
+        <NoData />
+      )}
+
+     
       
 
     </div>
