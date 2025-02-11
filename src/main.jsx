@@ -6,7 +6,7 @@ import HomePage from './Pages/Home/Home-page.jsx'
 import Products from './Pages/Products/Products.jsx'
 import About from './Pages/About/About.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProductDetails from './Components/Product-details.jsx'
+import ProductDetails from './Pages/Products/Product-details.jsx'
 import ErrorElement from './Components/ErrorElement.jsx'
 
 const router = createBrowserRouter([
