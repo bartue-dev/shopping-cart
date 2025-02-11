@@ -7,11 +7,13 @@ import Products from './Pages/Products/Products.jsx'
 import About from './Pages/About/About.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProductDetails from './Components/Product-details.jsx'
+import ErrorElement from './Components/ErrorElement.jsx'
 
 const router = createBrowserRouter([
   {
     path:"/",
     element: <App />,
+    errorElement: <ErrorElement />,
     children: [
       { index: true, element: <HomePage /> },
       { path: "home", element: <HomePage /> },
