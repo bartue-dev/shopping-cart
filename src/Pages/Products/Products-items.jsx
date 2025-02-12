@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { useOutletContext } from "react-router-dom"
 
-function ProductsItems({data, products, handleQuantity}) {
-  const [/* productDetails  */,setProductDetails, cartItems, setCartItems] = useOutletContext();
+function ProductsItems({data, products, handleQuantity, setProducts}) {
+  const [/* productDetails  */,setProductDetails, /* cartItems */, setCartItems] = useOutletContext();
 
   const handleProductDetails = (index) => {
     const detailsIndex = products.findIndex((product, i) => i === index)
@@ -14,9 +14,25 @@ function ProductsItems({data, products, handleQuantity}) {
   
   const handleCartItems = (index) => {
     const productIndex = products.findIndex((_, i) => i === index)
-    const product = products[productIndex];
 
-    setCartItems(prev => [...prev, product])
+    products.map((product, i) => {
+      if (i === index) {
+        if (product.quantity === 0) {
+          alert("Add product quantity!");
+        } else {
+          setCartItems(prev => [...prev, products[productIndex]])
+        }
+      }
+    });
+
+    setProducts(prev => (
+      prev.map((items, i) => {
+        return i === index ? {...items, quantity: 0} : items
+      })
+    ))
+
+    console.log("add button click");
+    
   }
 
   // console.log("Cart Items:", cartItems);
@@ -91,7 +107,6 @@ function ProductsItems({data, products, handleQuantity}) {
                 </div>
               </div>
             </div>
-
            </div>
         )
       })}
