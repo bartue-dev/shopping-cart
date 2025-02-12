@@ -2,11 +2,15 @@ import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Navbar({cartItems}) {
-
-  console.log("cart items from navbar:", cartItems.length);
   
+  const totalQuantity = cartItems.reduce((sum, items) => sum + items.quantity ,0);
+
+  // console.log("cart items from navbar:", cartItems);
+ 
   return (
-    <nav className="flex justify-between py-4 px-20 font-poppins items-center bg-neutral-50 text-stone-700">
+    <nav 
+      className="flex justify-between py-4 px-20 font-poppins items-center bg-neutral-50 text-stone-700 sticky top-0 z-999 shadow-md"
+    >
 
       <h1 className="text-3xl italic">any<span className="font-bold">WEAR</span> </h1>
 
@@ -17,11 +21,16 @@ function Navbar({cartItems}) {
       </div>
 
       <div className="relative">
-        <ShoppingCart size={30}/>
+        <Link to="my-cart">
+          <ShoppingCart 
+            size={30}
+            className="cursor-pointer"
+          />
+        </Link>
         <h1 
           className="absolute -top-3 right-0 font-semibold"
         >
-          {cartItems.length}
+          {totalQuantity}
       </h1>
       </div>
 
