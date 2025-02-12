@@ -6,7 +6,7 @@ import NoData from "../../Components/NoData";
 function ProductDetails() {
   const [productDetails, setProductDetails] = useOutletContext()
 
-  console.log("Product details:",productDetails);
+  // console.log("Product details:",productDetails);
   
   const handleQuantity = (operator) => {
 
@@ -77,10 +77,6 @@ function ProductDetails() {
       ) : (
         <NoData />
       )}
-
-     
-      
-
     </div>
   )
 }
