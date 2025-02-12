@@ -1,11 +1,11 @@
 import ProductsItems from "./Products-items";
 import Category from "../../Components/Category";
 import { HashLoader } from "react-spinners";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 function Products() {
   const [data, setData] = useState(null);
-  const [products, setProducts] = useState(null)
+  const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,15 +38,11 @@ function Products() {
         }
         setData(null)
         console.log(error)
-      }/*  finally {
-        setLoading(false)
-      } */
+      }
     }
-    // const timer = setTimeout(fetchData, 3000)
     fetchData();
     return () => {
       controller.abort();
-      // clearInterval(timer)
     }
   }, [])
 
@@ -91,6 +87,7 @@ function Products() {
           <ProductsItems 
             data={data}
             products={products}
+            setProducts={setProducts}
             handleQuantity={handleQuantity}
           />
         </div>
