@@ -8,6 +8,7 @@ import About from './Pages/About/About.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProductDetails from './Pages/Products/Product-details.jsx'
 import ErrorElement from './Components/ErrorElement.jsx'
+import MyCart from './Components/My-cart.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
       { path: "home", element: <HomePage /> },
       { path: "products", element: <Products /> },
       { path: "about", element: <About /> },
-      { path: "product-details", element: <ProductDetails />}
+      { path: "product-details", element: <ProductDetails />},
+      {path: "my-cart", element: <MyCart />}
     ]
   }
 ])
