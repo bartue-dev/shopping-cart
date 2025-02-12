@@ -10,7 +10,9 @@ function App() {
   return (
     <div>
       <Navbar cartItems={cartItems}/>
-      <Outlet context={[productDetails, setProductDetails, cartItems, setCartItems]}/>
+      <Outlet 
+        context={[productDetails, setProductDetails, cartItems, setCartItems]}
+      />
     </div>
   )
 }
