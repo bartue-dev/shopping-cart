@@ -8,7 +8,7 @@ import About from './Pages/About/About.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProductDetails from './Pages/Products/Product-details.jsx'
 import ErrorElement from './Components/ErrorElement.jsx'
-import MyCart from './Components/My-cart.jsx'
+import MyCart from './Pages/My-cart/My-cart.jsx'
 
 const router = createBrowserRouter([
   {
