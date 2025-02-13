@@ -29,7 +29,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
       prev.map((items, i) => {
         return i === index ? {...items, quantity: 0} : items
       })
-    ))
+    ));
 
     console.log("add button click");
     
