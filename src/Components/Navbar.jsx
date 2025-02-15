@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Navbar({cartItems}) {
   
-  const totalQuantity = cartItems.reduce((sum, items) => sum + items.quantity ,0);
+  const totalQuantity = cartItems.reduce((sum, items) => sum += items.quantity ,0);
 
-  // console.log("cart items from navbar:", cartItems);
  
   return (
     <nav 
