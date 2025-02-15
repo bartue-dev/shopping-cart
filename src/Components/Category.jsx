@@ -25,9 +25,12 @@ function Category({products, onClickAll, setProducts}) {
 
           {categoryNames(products).map((category, index) => {
             return (
-              <div key={index} onClick={() => handleCategoryClick(category)} className="border-1 w-full p-2 rounded-md cursor-pointer border-slate-400">
-                <h1 className="text-xl">{category.charAt(0).toUpperCase() + category.split("").slice(1).join("")}</h1>
-              </div>
+              <button 
+              key={index} 
+              onClick={() => handleCategoryClick(category)} className="border-1 w-full p-2 rounded-md cursor-pointer border-slate-400"
+              >
+                <h1 className="text-xl text-left">{category.charAt(0).toUpperCase() + category.split("").slice(1).join("")}</h1>
+              </button>
             )
           })}
       </div>
