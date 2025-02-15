@@ -1,57 +1,19 @@
 import ProductsItems from "./Products-items";
 import Category from "../../Components/Category";
 import { HashLoader } from "react-spinners";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../../utils/AppContext";
 
 function Products() {
-  const [data, setData] = useState(null);
-  const [products, setProducts] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products", {signal: signal});
-        
-        if(!response.ok) {
-          throw new Error(`Status ${response.status}`)
-        }
-
-        const data = await response.json();
-
-        const newData = data.map(items => ({
-          ...items,
-          quantity: 0
-        }))
-
-        setData(newData);
-        setProducts(newData);
-        setLoading(false)
-      } catch (error) {
-        if (error.name === "AbortError") {
-          console.log("Abort");
-          return;
-        }
-        setData(null)
-        console.log(error)
-      }
-    }
-    fetchData();
-    return () => {
-      controller.abort();
-    }
-  }, [])
+  const {data, products, setProducts, loading } = useContext(AppContext)
+ 
 
   // console.log("products:",products);
 
-  const handleQuantity = (operator, index) => {
+  const handleQuantity = (operator, id) => {
 
-    const quantity = products.map((product, i) => {
-      if (i === index) {
+    const quantity = products.map((product) => {
+      if (product.id === id) {
         if (operator === "add") {
           return {...product, quantity: product.quantity + 1}
         } else if (operator === "minus" && product.quantity > 0) {
