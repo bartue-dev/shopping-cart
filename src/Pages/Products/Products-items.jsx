@@ -1,49 +1,69 @@
 import { Link } from "react-router-dom"
 import { useOutletContext } from "react-router-dom"
+import AddtoCartMessage from "../../Components/AddtoCartMessage";
 
 function ProductsItems({data, products, handleQuantity, setProducts}) {
   const [/* productDetails  */,setProductDetails, /* cartItems */, setCartItems] = useOutletContext();
 
-  const handleProductDetails = (index) => {
-    const detailsIndex = products.findIndex((product, i) => i === index)
-    const result = products[detailsIndex]
+  const handleProductDetails = (id) => {
+    const detailsIndex = products.findIndex((product) => product.id === id)
+    const result = products[detailsIndex];
 
     setProductDetails(result)
-  }
-
+  } 
   
-  const handleCartItems = (index) => {
-    const productIndex = products.findIndex((_, i) => i === index)
+  const handleAddToCartItems = (id) => {
+    const productIndex = products.findIndex((product) => product.id === id);
 
-    products.map((product, i) => {
-      if (i === index) {
+    products.map((product) => {
+      if (product.id === id) {
         if (product.quantity === 0) {
           alert("Add product quantity!");
         } else {
-          setCartItems(prev => [...prev, products[productIndex]])
+
+          setCartItems(prev => {
+            const exist = prev.some(items => items.id === id );
+
+            if (exist) {
+             return prev.map((items) => {
+                return items.id === id ? {...items, quantity: items.quantity + products[productIndex].quantity} : items
+              });
+            } else {
+              return [...prev, products[productIndex]]
+            }
+          });
+          
+          setProducts(prev => (
+            prev.map((items) => {
+              return items.id === id ? {...items, isCartMessage: true} : items
+            })
+          
+          ));
         }
       }
     });
 
     setProducts(prev => (
-      prev.map((items, i) => {
-        return i === index ? {...items, quantity: 0} : items
+      prev.map((items) => {
+        return items.id === id ? {...items, quantity: 0} : items
       })
     ));
 
-    console.log("add button click");
-    
   }
 
-  // console.log("Cart Items:", cartItems);
-
-  // console.log("ProductDetails:",productDetails)
+  const timerFn = (id) => {
+    setProducts(prev => (
+      prev.map((items) => {
+        return id === items.id ? {...items, isCartMessage: false} : items
+      })
+    ))
+  }
 
   return (
     <>
-     {data && products.map((product, index) => {
+     {data && products.map((product) => {
         return (
-          <div key={product.id} className="flex flex-col gap-3 border-1 border-slate-400 p-5 rounded-xl w-81 h-133">
+          <div key={product.id} className="flex flex-col gap-3 border-1 border-slate-400 p-5 rounded-xl w-81 h-135">
             <div className="p-10 w-full h-70">
               <img src={product.image} alt="" className="w-full h-full object-contain"/>
             </div>
@@ -59,7 +79,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
                 {product.description.split(" ").slice(0,10).join(" ")}... 
                 {" "}
                 <Link to="/product-details" >
-                  <span onClick={() => handleProductDetails(index)}
+                  <span onClick={() => handleProductDetails(product.id)}
                   className="underline cursor-pointer font-semibold"
                   >
                     Read more
@@ -67,11 +87,21 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
                 </Link> 
               </h1>
 
-              <h1 
-              className="text-xs border-1 border-slate-400 rounded-xl bg-slate-200 w-fit px-3 py-1 flex justify-center items-center"
-              >
-                {product.category}
-              </h1>
+              <div className="flex justify-between items-center mb-3 h-7">
+                <h1 
+                className="text-xs border-1 border-slate-400 rounded-xl bg-slate-200 w-fit px-3 py-1 flex justify-center items-center"
+                >
+                  {product.category}
+                </h1>
+                {product.isCartMessage ? (
+                  <AddtoCartMessage 
+                    id={product.id}
+                    timerFn={timerFn}                      
+                  />
+                ) : (
+                  <></>
+                )}
+              </div>
 
               <div className="flex justify-between items-center gap-2">
                 <div>
@@ -83,7 +113,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
                   <div className="flex justify-between items-center">
                     <button 
                       className="cursor-pointer px-2 text-xl"
-                      onClick={() => handleQuantity("minus", index)}
+                      onClick={() => handleQuantity("minus", product.id)}
                       >
                         -
                     </button>
@@ -92,7 +122,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
 
                     <button 
                       className="cursor-pointer px-2 text-xl"
-                      onClick={() => handleQuantity("add", index)}
+                      onClick={() => handleQuantity("add", product.id)}
                     >
                       +
                     </button>
@@ -100,7 +130,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
 
                   <button 
                     className="border-1 rounded-lg py-2 px-3 bg-blue-500 text-white text-sm cursor-pointer"
-                    onClick={() => handleCartItems(index)}
+                    onClick={() => handleAddToCartItems(product.id)}
                     >
                       Add to cart
                   </button>
