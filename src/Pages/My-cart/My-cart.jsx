@@ -5,7 +5,7 @@ import CartEmpty from "../../Components/Cart-empty";
 function MyCart() {
   const [/* productDetails  */, /* setProductDetails*/, cartItems, setCartItems] = useOutletContext();
 
-  console.log("Cart Items from My Cart:", cartItems);
+  // console.log("Cart Items from My Cart:", cartItems);
 
   const quantityTotalPrice = (price, quantity) => {
     let total = quantity * price
@@ -13,9 +13,9 @@ function MyCart() {
     return Math.round((total + Number.EPSILON) * 100) / 100
   }
   
-  const handleQuantity = (operator, index) => {
-    const cart = cartItems.map((items, i) => {
-      if (i === index) {
+  const handleQuantity = (operator, id) => {
+    const cart = cartItems.map((items) => {
+      if (id === items.id) {
         if (operator === "add") {
           return {...items, quantity: items.quantity + 1}
         } else if (operator === "minus" && items.quantity > 0) {
@@ -81,7 +81,7 @@ function MyCart() {
                         <div className="flex justify-between items-center">
                           <button 
                             className="cursor-pointer px-2 text-xl"
-                            onClick={() => handleQuantity("minus", index)}
+                            onClick={() => handleQuantity("minus", items.id)}
                             >
                               -
                           </button>
@@ -117,7 +117,7 @@ function MyCart() {
             </table>
           </div>
       
-          <div className="border rounded-md border-gray-400 w-100 h-78 p-5">
+          <div className="border rounded-md border-gray-400 w-100 h-80 p-5">
             <div className="text-3xl font-semibold border-b-1 p-1 border-gray-400">Order Summary</div>
 
             <div className="flex flex-col gap-2 border-b-1 border-gray-400 mt-5 p-1">
@@ -142,12 +142,20 @@ function MyCart() {
               <h1 className="">Total</h1>
               <h2>${total()}</h2>
             </div>
-            <button 
-              className="cursor-pointer bg-blue-500 rounded-md py-2 px-3 text-white mt-4"
-              onClick={() => alert("Order Placed!")}
-            >
-              Checkout
-            </button>
+            <div className="flex gap-5 items-center">
+              <button 
+                className="cursor-pointer bg-blue-500 rounded-md py-2 px-3 text-white mt-4"
+                onClick={() => alert("Order Placed!")}
+              >
+                Checkout
+              </button>
+              <button
+                className="cursor-pointer border border-gray-400 rounded-md py-2 px-3 mt-4"
+                onClick={() => setCartItems([])}
+              >
+                Clear cart
+              </button>
+            </div>
           </div>
         </div>
       )}
