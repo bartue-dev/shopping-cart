@@ -2,12 +2,11 @@ import { Link, useOutletContext } from "react-router-dom";
 import { CircleChevronLeft } from "lucide-react";
 import BackgroundImage from "../../utils/Background-image";
 import NoData from "../../Components/NoData";
+import AddtoCartMessage from "../../Components/AddtoCartMessage";
 
 function ProductDetails() {
-  const [productDetails, setProductDetails] = useOutletContext()
+  const [productDetails, setProductDetails, cartItems, setCartItems] = useOutletContext();
 
-  // console.log("Product details:",productDetails);
-  
   const handleQuantity = (operator) => {
 
     const quantity = {
@@ -18,8 +17,46 @@ function ProductDetails() {
     setProductDetails(quantity);
   }
 
+  const handleAddToCartItems = (id, detailsQuantity ) => {
+    const exist = cartItems.some(items => items.id === id);
+    
+
+    if (detailsQuantity <= 0) {
+      alert("Add product quantity!")
+    } else if (exist) {
+
+      setCartItems(prev => (
+        prev.map(items => {
+          return {...items, quantity: items.quantity + detailsQuantity}
+        })
+      ));
+
+      setProductDetails({
+        ...productDetails,
+        quantity: 0,
+        isCartMessage: true
+      });
+      
+    } else {
+      setProductDetails({
+        ...productDetails,
+        quantity: 0,
+        isCartMessage: true
+      });
+      setCartItems(prev => [...prev, productDetails])
+    }
+  }
+
+  const timerFn = () => {
+    setProductDetails({
+      ...productDetails,
+      isCartMessage: false
+    })
+  }
+
+
   return (
-    <div className="flex items-center justify-center font-poppins h-[86vh]">
+    <div className="flex items-center justify-center font-poppins h-[86vh] mt-10">
       <BackgroundImage />
 
       {productDetails ? (
@@ -39,11 +76,11 @@ function ProductDetails() {
           <img src={productDetails.image} className="w-fulll h-full object-contain m-auto" />
         </div>
 
-        <div className="w-250 flex items-start justify-center flex-col gap-10">
+        <div className="w-250 flex items-start justify-center flex-col ">
           <div>
             <h1 className="text-3xl">{productDetails.title}</h1>
             <h1 className="mt-5 underline text-lg">Description:</h1>
-            <h1 className="text-base/5 text-justify">{productDetails.description}</h1>
+            <h1 className="text-base/6 text-justify">{productDetails.description}</h1>
           </div>
 
           <div className="flex gap-6 w-full">
@@ -65,11 +102,25 @@ function ProductDetails() {
               </button>
             </div>
             
-            <button 
-              className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer"
-              >
-                Add to cart
-            </button>
+            <div className="mb-10 flex flex-col gap-2">
+              <div className="w-full h-8">
+                {productDetails.isCartMessage ? (
+                  <AddtoCartMessage 
+                    id={productDetails.id}
+                    timerFn={timerFn}
+                  />
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              <button 
+                className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer"
+                onClick={() => handleAddToCartItems(productDetails.id, productDetails.quantity)}
+                >
+                  Add to cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
