@@ -54,7 +54,7 @@ function MyCart() {
       ) : (
         <div className="flex justify-center items-start gap-10 w-full">
 
-          <div className="overflow-auto h-100 p-5">
+          <div className="overflow-auto h-100 p-5 shadow-lg">
             <table className="w-full table-auto border-collapse">
               <thead className="border border-gray-400">
                 <tr className="border border-gray-400">
@@ -90,7 +90,7 @@ function MyCart() {
 
                           <button 
                             className="cursor-pointer px-2 text-xl"
-                            onClick={() => handleQuantity("add", index)}
+                            onClick={() => handleQuantity("add", items.id)}
                           >
                             +
                           </button>
