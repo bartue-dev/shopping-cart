@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProductDetails from './Pages/Products/Product-details.jsx'
 import ErrorElement from './Components/ErrorElement.jsx'
 import MyCart from './Pages/My-cart/My-cart.jsx'
+import AppContextProdiver from './utils/AppContextProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,13 +22,15 @@ const router = createBrowserRouter([
       { path: "products", element: <Products /> },
       { path: "about", element: <About /> },
       { path: "product-details", element: <ProductDetails />},
-      {path: "my-cart", element: <MyCart />}
+      { path: "my-cart", element: <MyCart />}
     ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <AppContextProdiver>
+      <RouterProvider router={router}/>
+    </AppContextProdiver>
   </StrictMode>,
 )
