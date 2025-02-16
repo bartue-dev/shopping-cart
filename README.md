@@ -1,8 +1,13 @@
-# React + Vite
+# shopping-cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ecommerce Project using a ecommerce public api [fake-store](https://fakestoreapi.com/) <br>
 
-Currently, two official plugins are available:
+Built in react js library and react router framework to achieve SPA
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Preview
+
+[View the live project here](https://shopping-cart-nine-pied.vercel.app/)
+
+---
+
+Thank you for checking it out! 🎉
