@@ -79,13 +79,13 @@ function ProductDetails() {
 
         <div className="flex items-start justify-center flex-col">
           <div>
-            <h1 className="text-3xl max-[769px]:text-2xl">{productDetails.title}</h1>
+            <h1 className="text-3xl max-[769px]:text-2xl max-[480px]:text-lg">{productDetails.title}</h1>
             <h1 className="mt-5 underline text-lg max-[769px]:text-base">Description:</h1>
-            <h1 className="text-base/6 text-justify max-[769px]:text-sm">{productDetails.description}</h1>
+            <h1 className="text-base/6 text-justify max-[769px]:text-sm max-[480px]:text-xs">{productDetails.description}</h1>
           </div>
 
-          <div className="flex gap-6 w-full">
-            <div className="flex justify-between items-center w-30 text-2xl max-[769px]:text-xl">
+          <div className="flex gap-6 w-full max-[480px]:gap-1">
+            <div className="flex justify-between items-center w-30 text-2xl max-[769px]:text-xl max-[480px]:text-lg">
               <button 
                 className="cursor-pointer px-2 text-xl"
                 onClick={() => handleQuantity("minus")}
@@ -116,7 +116,7 @@ function ProductDetails() {
               </div>
 
               <button 
-                className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer max-[769px]:text-lg max-[769px]:px-7 max-[769px]:py-2"
+                className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer max-[769px]:text-lg max-[769px]:px-7 max-[769px]:py-2 max-[480px]:text-base max-[480px]:whitespace-nowrap max-[480px]:px-3"
                 onClick={() => handleAddToCartItems(productDetails.id, productDetails.quantity)}
                 >
                   Add to cart

@@ -65,7 +65,7 @@ function ProductsItems({data, products, handleQuantity, setProducts}) {
         return (
           <div 
             key={product.id} 
-            className="flex flex-col gap-3 border-1 border-slate-400 p-5 rounded-xl w-81 h-135 max-[769px]:w-100">
+            className="flex flex-col gap-3 border-1 border-slate-400 p-5 rounded-xl w-81 h-135 max-[769px]:w-100 max-[480px]:w-full">
             <div className="p-10 w-full h-70">
               <img src={product.image} alt="" className="w-full h-full object-contain"/>
             </div>

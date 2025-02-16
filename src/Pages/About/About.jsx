@@ -10,7 +10,7 @@ function About() {
       </div>
 
       <div>
-        <h1 className="text-5xl mb-3 text-slate-800 max-[769px]:text-4xl max-[480px]:text-3xl">Frameworks and Technogies used</h1>
+        <h1 className="text-5xl mb-3 text-slate-800 max-[769px]:text-4xl max-[480px]:text-2xl">Frameworks and Technogies used</h1>
         <p className="font-light text-xl/8 text-slate-800 mb-6 max-[769px]:text-base max-[480px]:text-sm">
           For this project <span className="text-sky-500 font-semibold">react js</span> is the frontend along with the <span className="text-sky-500 font-semibold">react-router</span> framework
         </p>
