@@ -14,11 +14,11 @@ function Category({products, onClickAll, setProducts}) {
     <>
       {products &&
         <div className="self-start flex flex-col justify-center items-start gap-2 w-70 min-h-75 border-1 border-slate-400 rounded-xl p-5">
-          <h1 className="text-2xl">Categories:</h1>
+          <h1 className="text-2xl max-[480px]:text-xl">Categories:</h1>
 
           <div 
           onClick={onClickAll} 
-          className="border-1 w-full p-2 rounded-md cursor-pointer text-xl border-slate-400"
+          className="border-1 w-full p-2 rounded-md cursor-pointer text-xl border-slate-400 max-[480px]:text-lg"
           >
             All
           </div>
@@ -29,7 +29,7 @@ function Category({products, onClickAll, setProducts}) {
               key={index} 
               onClick={() => handleCategoryClick(category)} className="border-1 w-full p-2 rounded-md cursor-pointer border-slate-400"
               >
-                <h1 className="text-xl text-left">{category.charAt(0).toUpperCase() + category.split("").slice(1).join("")}</h1>
+                <h1 className="text-xl text-left max-[480px]:text-lg">{category.charAt(0).toUpperCase() + category.split("").slice(1).join("")}</h1>
               </button>
             )
           })}

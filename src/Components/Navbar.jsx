@@ -8,7 +8,7 @@ function Navbar({cartItems}) {
  
   return (
     <nav 
-      className="flex justify-between py-4 px-20 font-poppins items-center bg-neutral-50 text-stone-700 sticky top-0 z-999 shadow-md max-[480px]:px-15"
+      className="flex justify-between py-4 px-20 font-poppins items-center bg-neutral-50 text-stone-700 sticky top-0 z-999 shadow-md max-[480px]:px-10 max-[480px]:gap-3"
     >
 
       <h1 className="text-3xl italic max-[769px]:text-2xl max-[480px]:hidden">any<span className="font-bold">WEAR</span> </h1>
