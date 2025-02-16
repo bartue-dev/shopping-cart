@@ -56,7 +56,7 @@ function ProductDetails() {
 
 
   return (
-    <div className="flex items-center justify-center font-poppins h-[86vh] mt-10">
+    <div className="flex items-center justify-center font-poppins mt-10">
       <BackgroundImage />
 
       {productDetails ? (
@@ -70,21 +70,22 @@ function ProductDetails() {
         </Link>
 
       
-      <div className="flex items-center justify-center gap-10 p-5 w-250 z-1">
+      <div className="flex items-center justify-center gap-10 p-5 w-250 z-1 max-[769px]:px-20 max-[480px]:flex-col max-[480px]:gap-5">
 
-        <div className=" w-200 h-120">
-          <img src={productDetails.image} className="w-fulll h-full object-contain m-auto" />
-        </div>
+        <img 
+          src={productDetails.image} 
+          className="w-200 h-100 object-contain m-auto max-[769px]:w-50 max-[480px]:-mb-10" 
+        />
 
-        <div className="w-250 flex items-start justify-center flex-col ">
+        <div className="flex items-start justify-center flex-col">
           <div>
-            <h1 className="text-3xl">{productDetails.title}</h1>
-            <h1 className="mt-5 underline text-lg">Description:</h1>
-            <h1 className="text-base/6 text-justify">{productDetails.description}</h1>
+            <h1 className="text-3xl max-[769px]:text-2xl">{productDetails.title}</h1>
+            <h1 className="mt-5 underline text-lg max-[769px]:text-base">Description:</h1>
+            <h1 className="text-base/6 text-justify max-[769px]:text-sm">{productDetails.description}</h1>
           </div>
 
           <div className="flex gap-6 w-full">
-            <div className="flex justify-between items-center w-30 text-2xl">
+            <div className="flex justify-between items-center w-30 text-2xl max-[769px]:text-xl">
               <button 
                 className="cursor-pointer px-2 text-xl"
                 onClick={() => handleQuantity("minus")}
@@ -115,7 +116,7 @@ function ProductDetails() {
               </div>
 
               <button 
-                className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer"
+                className="border-1 rounded-lg py-3 px-10 bg-blue-500 text-white text-xl cursor-pointer max-[769px]:text-lg max-[769px]:px-7 max-[769px]:py-2"
                 onClick={() => handleAddToCartItems(productDetails.id, productDetails.quantity)}
                 >
                   Add to cart
