@@ -44,7 +44,7 @@ function Products() {
         </div>
       )}
 
-      <div className="flex justify-center p-10 font-poppins">
+      <div className="flex justify-center p-10 font-poppins gap-5 max-[480px]:flex-col-reverse max-[480px]:gap-10">
         <div className="w-full grid grid-cols-(--custom-grid) justify-center items-center gap-5" >
           <ProductsItems 
             data={data}

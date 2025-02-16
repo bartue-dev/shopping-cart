@@ -6,8 +6,8 @@ function Footer() {
   const {products} = useContext(AppContext)
 
   return (
-    <div className=" p-20 font-poppins">
-      <div className="border-t-1 border-b-1 flex border-gray-400 justify-between items-start p-5">
+    <div className=" p-20 font-poppins max-[769px]:text-xs">
+      <div className="border-t-1 border-b-1 flex border-gray-400 justify-between items-start p-5 max-[480px]:flex-wrap gap-10">
         <h1 className="font-light">Terms Privacy Policy</h1>
 
         <div className="flex flex-col gap-2">
